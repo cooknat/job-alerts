@@ -1,19 +1,24 @@
 default: &default
-      adapter: postgresql
-      encoding: unicode
-      pool: 5
-      username: <%= ENV['USERNAME'] %>
-      password: <%= ENV['PASSWORD'] %>
-      host:     <%= ENV['IP'] %>
-
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  
+  # Important configs for cloud9, change password value
+  # to what you entered in the previous psql step.
+  template: template0
+  username: ubuntu
+  password: password
+  
 development:
   <<: *default
-  database: app_development
+  database: job-alert_development
 
 test:
   <<: *default
-  database: app_test
+  database: job-alert_test
 
 production:
   <<: *default
-  database: app_production
+  database: job-alert_production
+  username: job-alert
+  password: <%= ENV['password'] %>
