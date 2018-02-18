@@ -4,7 +4,7 @@ default: &default
   database: job-alert_development
   host: localhost
   pool: 5
-  username: nat
+  username: postgres
   password: password
   
 development:
