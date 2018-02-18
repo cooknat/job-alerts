@@ -12,9 +12,9 @@ class JobPagesController < ApplicationController
   end
 
   def create
-    @jobPage = JobPage.new
-    @jobPage.name = params[:jobPage][:name]
-    @jobPage.url = params[:jobPage][:url]
+    @jobPage = JobPage.new    
+    @jobPage.name = params[:job_page][:name]
+    @jobPage.url = params[:job_page][:url]
 
      if @jobPage.save
        flash[:notice] = "New page was created."

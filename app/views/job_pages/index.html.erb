@@ -1,5 +1,6 @@
 
  <h1>All Job Pages</h1>
+ <h2><%= link_to "Add new page", new_job_page_path %></h2>
 
  <% @jobPages.each do |jobPage| %>
    <p><%= link_to jobPage.name, job_page_path(jobPage.id) %></p>
