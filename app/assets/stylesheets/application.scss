@@ -13,11 +13,20 @@
  *= require_tree .
  *= require_self
  */
+@import 'groundwork_settings';
+@import 'groundworkcss/groundwork';
+
+ @import 'groundworkcss/settings-rails4'
+ @import "groundworkcss/groundwork"
+
 .nav {
-	border: 2px green solid;
+	color: white;
+	background-color: green;
 	border-radius: 5px;
-	padding: 5px;
-	margin: 10px;
+	padding: 6px;
+	margin: 5px;
+	text-decoration: none;
+	font-family: sans-serif;
 }
 
 .user-info {
