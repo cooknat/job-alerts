@@ -26,8 +26,10 @@ class JobPagesController < ApplicationController
   end  
 
   def edit
+    #leave for now, should only be available to site admin
   end
 
   def delete
+    #leave for now, should only be available to site admin
   end
 end
