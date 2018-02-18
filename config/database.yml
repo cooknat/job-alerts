@@ -1,12 +1,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: job-alert_development
+  host: localhost
   pool: 5
-  
-  # Important configs for cloud9, change password value
-  # to what you entered in the previous psql step.
-  template: template0
-  username: ubuntu
+  username: nat
   password: password
   
 development:
@@ -22,3 +20,5 @@ production:
   database: job-alert_production
   username: job-alert
   password: <%= ENV['password'] %>
+
+
