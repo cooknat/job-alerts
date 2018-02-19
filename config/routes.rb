@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   resources :job_pages
 
+  resources :job_searches
+
   get 'about' => 'welcome#about'
 
   root 'welcome#index'
