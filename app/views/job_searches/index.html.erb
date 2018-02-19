@@ -1,0 +1,7 @@
+ <h1>Your Searches</h1>
+ 
+
+ <% @jobSearches.each do |jobSearch| %>
+   <p><%= link_to jobSearch.job_page.name, job_search_path(jobSearch.id) %></p>
+   <p><%= jobSearch.keyword %></p>
+ <% end %>

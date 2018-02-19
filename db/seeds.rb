@@ -16,7 +16,21 @@
      password: Faker::Internet.password
    )
  end
+
+ users = User.all
+
+50.times do
+  JobSearch.create!(
+  	user: users.sample,
+  	job_page: jobPages.sample,
+  	keyword: Faker::Food.dish
+  )
+end
+
+jobSearches = JobSearch.all
+
  
  puts "Seed finished"
  puts "#{JobPage.count} jobPages created"
  puts "#{User.count} users created"
+ puts "#{JobSearch.count} jobSearches created"
