@@ -1,7 +1,9 @@
- <h1>Your Searches</h1>
- 
+ <h1>Your Searches</h1> 
 
- <% @jobSearches.each do |jobSearch| %>
-   <p><%= link_to jobSearch.job_page.name, job_search_path(jobSearch.id) %></p>
-   <p><%= jobSearch.keyword %></p>
+ <% @grouped_by_page.each do |group| %> 
+   <h3><%= link_to group.first.job_page.name, job_search_path(group.first.id) %></h3>
+   <% group.each do |jobSearch| %>     
+  	 <%= jobSearch.keyword %>,
+   <% end %>
+   <p>-----------------------------------------------------------------------------</p>   
  <% end %>

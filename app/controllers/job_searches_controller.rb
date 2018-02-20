@@ -1,11 +1,12 @@
 class JobSearchesController < ApplicationController
-  def index
-  	#change this, it should be filtered by current user
+  def index  	  	
     @jobSearches = current_user.job_searches
+    @grouped_by_page = @jobSearches.to_a.group_by { |item| item.job_page.id }.values
   end
 
-  def show
-    @jobSearch = JobSearch.find(params[:id])
+  def show  	
+  	@jobSearch = JobSearch.find(params[:id])    
+  	@kwList = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).select(:keyword).to_a
   end
 
   def new

@@ -19,6 +19,9 @@ gem 'autoprefixer-rails'
 gem 'compass-rails', '~> 3.0.2'
 gem 'groundworkcss'
 
+#for scheduling the scrapes
+gem 'whenever', require: false
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
