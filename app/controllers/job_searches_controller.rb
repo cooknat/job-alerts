@@ -1,4 +1,7 @@
 class JobSearchesController < ApplicationController
+  require "job_scrape.rb"
+  include JobScrape
+
   def index  	  	
     @jobSearches = current_user.job_searches
     @grouped_by_page = @jobSearches.to_a.group_by { |item| item.job_page.id }.values
@@ -11,6 +14,7 @@ class JobSearchesController < ApplicationController
 
   def new
     @jobSearch = JobSearch.new
+    @textvar = testScrape
   end
 
   def create
