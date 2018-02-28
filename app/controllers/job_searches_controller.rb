@@ -1,6 +1,6 @@
 class JobSearchesController < ApplicationController
-  require "job_scrape.rb"
-  include JobScrape
+
+include JobScrape
 
   def index  	  	
     @jobSearches = current_user.job_searches
@@ -14,13 +14,19 @@ class JobSearchesController < ApplicationController
 
   def new
     @jobSearch = JobSearch.new
+    #nokogiri testing, leave here for now
     @textvar = testScrape
   end
 
-  def create
+  def create    
+    p "jpi #{params[:jpi]}"
+    #p "jpi #{(params[:jpi]).key}"
+    #p "jpi #{(params[:jpi]).value}"
+    p "jpi #{(params[:jpi]).to_i}"
     @jobSearch = JobSearch.new    
-    @jobSearch.name = params[:job_search][:name]
-    @jobSearch.url = params[:job_search][:url]
+    @jobSearch.user_id = current_user.id
+    @jobSearch.job_page_id = (params[:jpi]).to_i
+    @jobSearch.keyword = params[:job_search][:keyword]
 
      if @jobSearch.save
        flash[:notice] = "New Search was created."

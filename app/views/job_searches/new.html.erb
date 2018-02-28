@@ -1,4 +1,21 @@
-<h2>Add new Job Searches here</h2>
+<h2>Add new Job Searches here for</h2>
 
-<p><%= @textvar %><p>
+
+ <%= form_for @jobSearch do |f| %>
+   <% pageID = params[:page_id] %>
+   <%= "page id is #{pageID}" %>
+
+   <%= hidden_field_tag 'jpi', pageID %>
+ 
+   <%= f.label :keyword %>
+   <%= f.text_field :keyword %>
+ 
+   <%= f.submit "Add Search" %>
+ <% end %>
+<p> just testing with one keyword for now, will look at multiples afterwards</p>
+
+
+
+<!--<p> i am just some nokogiri testing, ignore me</p>
+<p><%= @textvar %><p>-->
 
