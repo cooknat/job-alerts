@@ -18,11 +18,7 @@ include JobScrape
     @textvar = testScrape
   end
 
-  def create    
-    p "jpi #{params[:jpi]}"
-    #p "jpi #{(params[:jpi]).key}"
-    #p "jpi #{(params[:jpi]).value}"
-    p "jpi #{(params[:jpi]).to_i}"
+  def create   
     @jobSearch = JobSearch.new    
     @jobSearch.user_id = current_user.id
     @jobSearch.job_page_id = (params[:jpi]).to_i
@@ -38,10 +34,26 @@ include JobScrape
   end  
 
   def edit
+
    
   end
 
-  def delete
+  def destroy
+     @jobSearch = JobSearch.find(params[:id])
+     @jobSearch.job_page_id
+     #this is not deleting the correct one - think i need to search for the name not rely on the id
+    if @jobSearch.destroy
+      flash[:notice] = "\"#{@jobSearch.keyword}\" was deleted successfully."
+      #if JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id) 
+      p "other matches #{JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).first }"
+
+      #redirect_to job_search_path
+
+      redirect_to @jobSearch
+    else
+      flash.now[:alert] = "There was an error deleting the keyword."
+      render :show
+    end
     
   end
 end

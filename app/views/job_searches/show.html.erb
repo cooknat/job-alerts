@@ -1,9 +1,10 @@
 <h1><%= @jobSearch.job_page.name %></h1>
 <ul>
 <% @kwList.each do |kw| %>
-  <li><%= kw.keyword %></li>
+  <li><%= kw.keyword %><%= link_to "Delete this job title", @kw, method: :delete, data: {confirm: 'Are you sure you want to delete this job title?'} %></li>
 <% end %>
 
 
 
-<p>link to create a or edit a job search for this site</p>
+<p>make this link work also make delete link above work</p>
+<%= link_to "Add more keywords" %>
