@@ -9,13 +9,13 @@ include JobScrape
 
   def show  	
   	@jobSearch = JobSearch.find(params[:id])    
-  	@kwList = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).select(:keyword).to_a
+  	@kwList = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).select(:id, :keyword).to_a 
   end
 
   def new
     @jobSearch = JobSearch.new
     #nokogiri testing, leave here for now
-    @textvar = testScrape
+    #@textvar = testScrape
   end
 
   def create   
@@ -38,18 +38,19 @@ include JobScrape
    
   end
 
-  def destroy
+  def destroy   
      @jobSearch = JobSearch.find(params[:id])
-     @jobSearch.job_page_id
-     #this is not deleting the correct one - think i need to search for the name not rely on the id
+    
     if @jobSearch.destroy
       flash[:notice] = "\"#{@jobSearch.keyword}\" was deleted successfully."
-      #if JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id) 
-      p "other matches #{JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).first }"
 
-      #redirect_to job_search_path
-
-      redirect_to @jobSearch
+      matches = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).to_a
+      if matches == []
+        redirect_to @jobSearch
+      else
+       redirect_to job_search_path(matches.first.id)
+      end 
+      
     else
       flash.now[:alert] = "There was an error deleting the keyword."
       render :show

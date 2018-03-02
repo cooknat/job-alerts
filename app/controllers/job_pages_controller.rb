@@ -5,6 +5,7 @@ class JobPagesController < ApplicationController
 
   def show
     @jobPage = JobPage.find(params[:id])
+    @jobSearch = JobSearch.new  
   end
 
   def new
