@@ -19,7 +19,7 @@ class JobPagesController < ApplicationController
 
      if @jobPage.save
        flash[:notice] = "New page was created."
-       redirect_to @jobPage
+       redirect_to job_pages_path
      else
        flash.now[:alert] = "There was an error saving the page. Please try again."
        render :new

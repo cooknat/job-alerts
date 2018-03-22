@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180219053817) do
   create_table "job_searches", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "job_page_id"
-    t.string   "keyword"
+    t.string   "job_title"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -1,15 +1,16 @@
-<h1><%= @jobSearch.job_page.name %></h1>
+<h1><%= @jobPage.name + @jobPage.id.to_s %></h1>
+<%= p request.referrer %>
 <ul>
-<% @kwList.each do |kw| %>
-  <li><%= kw.keyword %>  <%= link_to "Delete this job title", kw, method: :delete, data: {confirm: 'Are you sure you want to delete this job title?'} %></li>
+<% @jobTitleList.each do |jt| %>
+  <li><%= jt.job_title %>  <%= link_to "Delete this job title", jt, method: :delete, data: {confirm: 'Are you sure you want to delete this job title?'} %></li>
 <% end %>
 
  <%= form_for JobSearch.new do |f| %>
-   <% pageID = @jobSearch.job_page.id %>   
+   <% pageID = @jobPage.id %>   
    <%= hidden_field_tag 'jpi', pageID %>
  
    <%= f.label 'Job Title' %>
-   <%= f.text_field :keyword %>
+   <%= f.text_field :job_title %>
  
    <%= f.submit "Add Job Title" %>
  <% end %>
@@ -17,7 +18,7 @@
 
 
 
-<p> just testing with one keyword for now, will look at multiples afterwards</p>
+<p> just testing with one job_title for now, will look at multiples afterwards</p>
 
 
 

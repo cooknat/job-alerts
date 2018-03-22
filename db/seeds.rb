@@ -1,7 +1,7 @@
  require 'faker'
 
  # Create JobPages
- 10.times do
+ 5.times do
 
    JobPage.create!( 
      name:  Faker::Space.galaxy,
@@ -10,7 +10,7 @@
  end
  jobPages = JobPage.all
  
- 10.times do
+ 5.times do
    User.create!(
      email: Faker::Internet.unique.safe_email,
      password: Faker::Internet.password
@@ -23,7 +23,7 @@
   JobSearch.create!(
   	user: users.sample,
   	job_page: jobPages.sample,
-  	keyword: Faker::Food.dish
+  	job_title: Faker::Food.dish
   )
 end
 

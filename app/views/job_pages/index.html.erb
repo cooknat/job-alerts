@@ -3,5 +3,8 @@
  <h2><%= link_to "Add new page", new_job_page_path %></h2>
 
  <% @jobPages.each do |jobPage| %>
+ <%= p jobPage.id %>
    <p><%= link_to jobPage.name, job_search_path(jobPage.id) %></p>
+   <%= jobPage.url %>
+   <br><br>
  <% end %>

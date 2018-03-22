@@ -3,7 +3,7 @@ class CreateJobSearches < ActiveRecord::Migration
     create_table :job_searches do |t|
       t.references :user, index: true, foreign_key: true
       t.references :job_page, index: true, foreign_key: true
-      t.string :keyword
+      t.string :job_title
 
       t.timestamps null: false
     end

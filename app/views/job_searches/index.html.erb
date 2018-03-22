@@ -3,7 +3,7 @@
  <% @grouped_by_page.each do |group| %> 
    <h3><%= link_to group.first.job_page.name, job_search_path(group.first.id, :page_id => group.first.job_page.id) %></h3>
    <% group.each do |jobSearch| %>     
-  	 <%= jobSearch.keyword %>,
+  	 <%= jobSearch.job_title %>,
    <% end %>
    <p>-----------------------------------------------------------------------------</p>   
  <% end %>

@@ -8,8 +8,15 @@ include JobScrape
   end
 
   def show  	
-  	@jobSearch = JobSearch.find(params[:id])    
-  	@kwList = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).select(:id, :keyword).to_a 
+    if request.headers["HTTP_REFERER"] == 'http://localhost:3000/job_pages'
+       @jobPage = JobPage.find(params[:id])
+       @jobTitleList = []
+    else       
+  	   @jobSearch = JobSearch.find(params[:id]) 
+       @jobPage = @jobSearch.job_page
+       @jobTitleList = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).select(:id, :job_title).to_a   
+    end
+          	
   end
 
   def new
@@ -22,11 +29,11 @@ include JobScrape
     @jobSearch = JobSearch.new    
     @jobSearch.user_id = current_user.id
     @jobSearch.job_page_id = (params[:jpi]).to_i
-    @jobSearch.keyword = params[:job_search][:keyword]
+    @jobSearch.job_title = params[:job_search][:job_title]
 
      if @jobSearch.save
        flash[:notice] = "New Search was created."
-       redirect_to @jobSearch
+       redirect_to job_search_path(@jobSearch.id)
      else
        flash.now[:alert] = "There was an error saving the Search. Please try again."
        render :new
@@ -42,7 +49,7 @@ include JobScrape
      @jobSearch = JobSearch.find(params[:id])
     
     if @jobSearch.destroy
-      flash[:notice] = "\"#{@jobSearch.keyword}\" was deleted successfully."
+      flash[:notice] = "\"#{@jobSearch.job_title}\" was deleted successfully."
 
       matches = JobSearch.where(user: current_user, job_page: @jobSearch.job_page.id).to_a
       if matches == []
@@ -52,9 +59,10 @@ include JobScrape
       end 
       
     else
-      flash.now[:alert] = "There was an error deleting the keyword."
+      flash.now[:alert] = "There was an error deleting the job title."
       render :show
     end
     
   end
 end
+
