@@ -1,4 +1,7 @@
 class JobPagesController < ApplicationController
+ 
+   before_action :authorise_user, only: [:edit, :destroy]
+
   def index
     @jobPages = JobPage.all
   end
@@ -30,7 +33,22 @@ class JobPagesController < ApplicationController
     #leave for now, should only be available to site admin
   end
 
-  def delete
-    #leave for now, should only be available to site admin
+  def destroy
+       @jobPage = JobPage.find(params[:id])
+    
+    if @jobPage.destroy
+      flash[:notice] = "\"#{@jobPage.name}\" was deleted successfully."   
+      redirect_to job_pages_path   
+    else
+      flash.now[:alert] = "There was an error deleting the job page."
+      render :show
+    end
   end
+
+  def authorise_user
+     unless current_user.admin?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to job_pages_path
+     end
+   end
 end

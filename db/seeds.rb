@@ -13,7 +13,8 @@
  5.times do
    User.create!(
      email: Faker::Internet.unique.safe_email,
-     password: Faker::Internet.password
+     password: Faker::Internet.password,
+     role: 0
    )
  end
 
