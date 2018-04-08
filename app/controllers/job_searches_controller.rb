@@ -1,6 +1,6 @@
 class JobSearchesController < ApplicationController
 
-include JobScrape
+#include JobScrape
 
   def index  	  	
     @jobSearches = current_user.job_searches

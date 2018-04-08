@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-module JobScrape
+class JobScrape
 
 #every 1.day, at: '6:30 am' do
   #stuff here
